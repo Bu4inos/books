@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <style>
+    body{
+      text-align: center;
+  }
+  ul.hr {
+    text-align: center;
+    display: inline;
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+
+}
+ul.hr li {
+    text-align: center;
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    border: 1px solid #000; /* Рамка вокруг текста */
+    padding: 3px; /* Поля вокруг текста */
+    float: left;
+}
+</style>
+</head>
+<body>
+    <script LANGUAGE='JavaScript' src='ajax_GET_UTF8.js'></script>
+    <p>Выбери начальную букву:</p>
+    <ul class="hr" id="letterArry"></ul>
+    <p> </p>
+    <p>Авторы:
+        <div class="listOut" id="answ"><ul class="hr" id="listAutor"></ul></div>
+    </p>
+    <p>Книги:</p>
+    <div id="book"><ul class="hr" id="listBook"></ul></div>
+
+    <script>
+    
+    showLetterArr();
+    // рисуем буковки
+
+        $('.letterIn').live('click', function() {//клик на букве
+            var l = $(this).attr("id");
+            var url = 'get_autor.php?ge=' + encodeURIComponent(l);
+            //alert('url=' + url);
+            getAjax(url, showResult);
+        });
+
+        $('.autorLink').live('click', function() {//клик на авторе
+            var l = $(this).attr("id");
+            var url = 'get_book.php?ba=' + encodeURIComponent(l);
+            getAjax(url, showResultAutor);//адрес скрипта и функция для обработки ответа
+        });
+        </script>
+        <a href="set_books_db.php"> set db</a>
+    </body>
+    </html>
